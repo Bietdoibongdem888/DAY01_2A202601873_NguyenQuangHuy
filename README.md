@@ -29,18 +29,35 @@ mỗi block có checkpoint theo giờ để bạn tự biết mình đang đúng
   - **NVIDIA NIM key — miễn phí**, đăng ký ~5 phút tại [build.nvidia.com](https://build.nvidia.com):
     xem hướng dẫn từng bước ở [LAB_GUIDE.md — Phụ lục B](LAB_GUIDE.md#phụ-lục-b--lấy-api-key-miễn-phí-từ-nvidia-nim)
 
+### Tạo môi trường ảo & cài thư viện
+
+**macOS / Linux:**
 ```bash
-# Tạo môi trường ảo (khuyến nghị)
 python3 -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-
-# Cài thư viện
+source .venv/bin/activate
 pip install -r requirements.txt
-
-# Thiết lập API key qua file .env (dùng cho phần chạy thật, không cần cho pytest)
-cp .env.example .env             # Windows: copy .env.example .env
-# Mở .env và thay sk-your-key-here bằng key thật
 ```
+
+**Windows (PowerShell):**
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+> Nếu PowerShell chặn script, chạy một lần
+> `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`,
+> hoặc dùng Command Prompt với lệnh `.venv\Scripts\activate.bat`.
+
+### Thiết lập API key qua file `.env`
+
+Chỉ cần cho phần chạy thật — pytest không cần key.
+
+```bash
+cp .env.example .env             # Windows: copy .env.example .env
+```
+
+Mở `.env` và thay `sk-your-key-here` bằng key thật.
 
 Code trong `template.py` đã gọi sẵn `load_dotenv()` nên key trong `.env`
 được nạp tự động. File `.env` đã nằm trong `.gitignore` — **tuyệt đối không

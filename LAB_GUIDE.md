@@ -20,12 +20,25 @@ Toàn bộ code viết trong `template.py`. Toàn bộ test chạy bằng mock �
 
 Giảng viên giới thiệu tổng quan (10'). Song song, bạn setup môi trường:
 
-**Bước 1.** Mở terminal tại thư mục lab, tạo môi trường ảo:
+**Bước 1.** Mở terminal tại thư mục lab, tạo môi trường ảo và cài thư viện.
+
+macOS / Linux:
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
+
+Windows (PowerShell):
+```powershell
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
+Dấu hiệu venv đã bật: đầu dòng lệnh hiện `(.venv)`. Nếu PowerShell chặn
+script, chạy một lần `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+-Scope CurrentUser`, hoặc dùng Command Prompt: `.venv\Scripts\activate.bat`.
 
 **Bước 2.** Thiết lập API key qua file `.env` (giảng viên cung cấp key dùng
 chung của lớp):
