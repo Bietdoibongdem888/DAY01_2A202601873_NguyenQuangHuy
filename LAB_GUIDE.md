@@ -37,6 +37,10 @@ Mở file `.env` vừa tạo, thay `sk-your-key-here` bằng key thật. `templa
 Key chỉ cần cho phần **chạy thật** (demo, exercises); pytest không cần key.
 `.env` đã nằm trong `.gitignore` — không bao giờ commit key.
 
+> 🆓 **Không có key OpenAI?** Lấy key **miễn phí** từ NVIDIA NIM theo
+> [Phụ lục B](#phụ-lục-b--lấy-api-key-miễn-phí-từ-nvidia-nim) — chỉ mất
+> ~5 phút đăng ký, không cần thẻ tín dụng, và không phải sửa dòng code nào.
+
 **Bước 3.** Chạy thử bộ test:
 ```bash
 pytest tests/ -v
@@ -471,7 +475,7 @@ copy vào `solution/`, zip, đổi tên `<mã sinh viên>_lab_1.zip`, upload LMS
 
 ---
 
-## Phụ Lục — Lỗi Thường Gặp
+## Phụ Lục A — Lỗi Thường Gặp
 
 | Triệu chứng | Nguyên nhân | Cách sửa |
 |---|---|---|
@@ -482,3 +486,64 @@ copy vào `solution/`, zip, đổi tên `<mã sinh viên>_lab_1.zip`, upload LMS
 | History phình to, chi phí tăng dần | Quên cắt history | `history = history[-6:]` sau mỗi lượt |
 | `StopIteration` trong test scenario | Đọc input nhiều hơn số lượt kịch bản | Kiểm tra `max_turns` **trước** khi `get_input()` |
 | tiktoken treo/lỗi khi offline | Lần đầu cần mạng để tải encoding | Fallback `max(1, len(text) // 4)` trong try/except |
+
+---
+
+## Phụ Lục B — Lấy API Key MIỄN PHÍ từ NVIDIA NIM
+
+NVIDIA NIM cung cấp endpoint **tương thích chuẩn OpenAI** với hàng nghìn
+lượt gọi miễn phí — đủ dư cho cả buổi lab. Code của bạn **không phải sửa
+dòng nào**: OpenAI SDK tự đọc `OPENAI_BASE_URL` từ `.env`, còn tên model
+đã được `template.py` đọc qua biến `LAB_MODEL` / `LAB_MINI_MODEL`.
+
+### Bước 1 — Đăng ký tài khoản (miễn phí, không cần thẻ)
+
+1. Mở [build.nvidia.com](https://build.nvidia.com)
+2. Bấm **Login** (góc phải trên) → chọn **Create Account** nếu chưa có.
+   Dùng email trường hoặc email cá nhân đều được.
+3. Xác nhận email là xong.
+
+### Bước 2 — Tạo API key
+
+1. Sau khi đăng nhập, mở một model bất kỳ trong catalog — ví dụ
+   [meta/llama-3.1-8b-instruct](https://build.nvidia.com/meta/llama-3_1-8b-instruct)
+2. Ở panel code bên phải, bấm **Get API Key** → **Generate Key**
+3. Copy key dạng `nvapi-...` — **lưu ngay**, key chỉ hiện một lần
+
+### Bước 3 — Cấu hình `.env`
+
+Mở `.env` và thay bằng (mẫu có sẵn trong `.env.example`):
+
+```bash
+OPENAI_API_KEY=nvapi-key-cua-ban
+OPENAI_BASE_URL=https://integrate.api.nvidia.com/v1
+LAB_MODEL=meta/llama-3.3-70b-instruct
+LAB_MINI_MODEL=meta/llama-3.1-8b-instruct
+```
+
+Cặp model trên thay vai GPT-4o (model lớn) và GPT-4o-mini (model nhỏ) —
+bài so sánh 70B vs 8B của Block 1 vẫn nguyên giá trị: bạn sẽ thấy đúng
+sự đánh đổi chất lượng / tốc độ giữa model lớn và nhỏ.
+
+### Bước 4 — Kiểm tra key hoạt động
+
+```bash
+python -c "
+from template import call_openai
+text, latency = call_openai('Chào bạn, hãy trả lời bằng 1 câu tiếng Việt.')
+print(f'[{latency:.2f}s] {text}')
+"
+```
+
+Thấy câu trả lời tiếng Việt in ra là xong — làm tiếp lab như bình thường.
+
+### Lưu ý khi dùng NIM
+
+- **pytest và `python grade.py` không cần key** — mọi test đều mock, nên
+  điểm số không phụ thuộc bạn dùng OpenAI hay NIM.
+- `count_tokens` không có bảng mã cho model Llama → tự động rơi về ước
+  lượng `len(text) // 4` (đúng như thiết kế fallback ở Task 2.2).
+- `estimate_cost` với model lạ dùng giá gpt-4o làm **tham chiếu học tập**
+  (NIM thực tế miễn phí) — xem gợi ý `.get(...)` trong docstring Task 2.3.
+- Nếu gặp lỗi 429 (hết hạn mức tạm thời) — chính là lúc `retry_with_backoff`
+  của Task 3.2 tỏa sáng.

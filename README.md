@@ -24,7 +24,10 @@ mỗi block có checkpoint theo giờ để bạn tự biết mình đang đúng
 
 ### Yêu cầu
 - Python 3.10+
-- OpenAI API key (chỉ để chạy thủ công — toàn bộ kiểm thử dùng mock)
+- API key để chạy thủ công (toàn bộ kiểm thử dùng mock, không cần key) — một trong hai:
+  - **OpenAI API key**, hoặc
+  - **NVIDIA NIM key — miễn phí**, đăng ký ~5 phút tại [build.nvidia.com](https://build.nvidia.com):
+    xem hướng dẫn từng bước ở [LAB_GUIDE.md — Phụ lục B](LAB_GUIDE.md#phụ-lục-b--lấy-api-key-miễn-phí-từ-nvidia-nim)
 
 ```bash
 # Tạo môi trường ảo (khuyến nghị)

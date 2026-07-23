@@ -29,8 +29,10 @@ PRICING_PER_1K_TOKENS = {
     "gpt-4o-mini": {"input": 0.00015, "output": 0.0006},
 }
 
-OPENAI_MODEL = "gpt-4o"
-OPENAI_MINI_MODEL = "gpt-4o-mini"
+# Tên model có thể đổi qua .env — ví dụ khi dùng NVIDIA NIM miễn phí
+# (xem LAB_GUIDE.md, Phụ lục B). Không đặt gì trong .env thì mặc định OpenAI.
+OPENAI_MODEL = os.getenv("LAB_MODEL", "gpt-4o")
+OPENAI_MINI_MODEL = os.getenv("LAB_MINI_MODEL", "gpt-4o-mini")
 
 
 # ===========================================================================
@@ -197,7 +199,10 @@ def estimate_cost(prompt: str, response: str, model: str = OPENAI_MODEL) -> dict
             - "total_cost":    float  (USD)
 
     Gợi ý:
-        input_cost = input_tokens / 1000 * PRICING_PER_1K_TOKENS[model]["input"]
+        pricing = PRICING_PER_1K_TOKENS.get(model, PRICING_PER_1K_TOKENS["gpt-4o"])
+        input_cost = input_tokens / 1000 * pricing["input"]
+        (.get với fallback: model không có trong bảng giá — ví dụ model NIM
+         miễn phí — thì lấy giá gpt-4o làm tham chiếu học tập)
     """
     # TODO: đếm token prompt/response, tra bảng giá, trả về dict 5 key
     raise NotImplementedError("Implement estimate_cost")
