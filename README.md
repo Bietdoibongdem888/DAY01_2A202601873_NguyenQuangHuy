@@ -1,5 +1,10 @@
 # K3 — Ngày 1: Khám Phá LLM API (9h00–13h00)
 
+Xem hướng dẫn step-by-step ở website: https://codelabs.vlearn.dev/codelab/day1-lab-llm-api-foundation 
+Đăng nhập bằng tài khoản vlearn đã được kích hoạt:
+- Tên tài khoản: mail vinuni
+- Mật khẩu: mã số sinh viên
+
 ## Mục Tiêu
 
 Sau buổi lab này, bạn sẽ:
