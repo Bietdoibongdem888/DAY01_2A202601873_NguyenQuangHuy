@@ -67,7 +67,7 @@ của bạn. Nếu gặp `ModuleNotFoundError: No module named 'openai'` → mô
 
 ---
 
-# 🕘 9h20–10h10 · BLOCK 1: API Cơ Bản
+# 🕘 9h20–10h00 · BLOCK 1: API Cơ Bản
 
 ### Mục tiêu
 - Gọi Chat Completions API, đo độ trễ
@@ -160,7 +160,7 @@ cost = (len(gpt4o_text.split()) / 0.75) / 1000 \
 `mini_response`, `gpt4o_latency`, `mini_latency`, `gpt4o_cost_estimate`).
 Tên key phải khớp từng ký tự — test so sánh chính xác.
 
-### ✅ CHECKPOINT 1 (10h10)
+### ✅ CHECKPOINT 1 (10h00)
 ```bash
 pytest tests/test_part1.py -v
 ```
@@ -183,7 +183,7 @@ phụ thuộc Task 1.3.
 
 ---
 
-# 🕘 10h10–11h00 · BLOCK 2: System Prompt & Token
+# 🕘 10h00–11h00 · BLOCK 2: System Prompt & Token
 
 ### Mục tiêu
 - Dùng message role `system` để định persona cho model

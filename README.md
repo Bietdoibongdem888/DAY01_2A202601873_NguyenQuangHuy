@@ -70,8 +70,8 @@ commit hoặc chia sẻ API key**.
 | Giờ | Hoạt động | Checkpoint |
 |-----|-----------|------------|
 | 9h00–9h20 | Mở đầu + setup môi trường | **CP0:** `pytest tests/ -v` chạy được (tests fail là đúng — bạn chưa code) |
-| 9h20–10h10 | **Block 1** — API cơ bản: Task 1.1, 1.2, 1.3 | **CP1 (10h10):** `pytest tests/test_part1.py -v` |
-| 10h10–11h00 | **Block 2** — System prompt & token: Task 2.1, 2.2, 2.3 | **CP2 (11h00):** `pytest tests/test_part2.py -v` |
+| 9h20–10h00 | **Block 1** — API cơ bản: Task 1.1, 1.2, 1.3 | **CP1 (10h00):** `pytest tests/test_part1.py -v` |
+| 10h00–11h00 | **Block 2** — System prompt & token: Task 2.1, 2.2, 2.3 | **CP2 (11h00):** `pytest tests/test_part2.py -v` |
 | 11h00–11h10 | ☕ Giải lao | — |
 | 11h10–12h00 | **Block 3** — Streaming & retry: Task 3.1, 3.2 | **CP3 (12h00):** `pytest tests/test_part3.py -v` |
 | 12h00–12h50 | **Block 4** — Mini-project: `run_assistant` | **CP4 (12h50):** `pytest tests/test_part4.py -v` |
