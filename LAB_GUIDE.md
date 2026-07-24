@@ -16,7 +16,7 @@ Toàn bộ code viết trong `template.py`. Toàn bộ test chạy bằng mock �
 
 ---
 
-# 🕘 9h00–9h20 · Mở Đầu & Setup
+# 🕘 9h00–10h00 · Mở Đầu & Setup
 
 Giảng viên giới thiệu tổng quan (10'). Song song, bạn setup môi trường:
 
@@ -59,7 +59,7 @@ Key chỉ cần cho phần **chạy thật** (demo, exercises); pytest không c�
 pytest tests/ -v
 ```
 
-### ✅ CHECKPOINT 0 (9h20)
+### ✅ CHECKPOINT 0 (10h00)
 Lệnh trên phải **chạy được và báo fail hàng loạt** với thông báo
 `NotImplementedError` — đó là dấu hiệu môi trường đã đúng, chỉ còn thiếu code
 của bạn. Nếu gặp `ModuleNotFoundError: No module named 'openai'` → môi trường
@@ -67,7 +67,7 @@ của bạn. Nếu gặp `ModuleNotFoundError: No module named 'openai'` → mô
 
 ---
 
-# 🕘 9h20–10h00 · BLOCK 1: API Cơ Bản
+# 🕘 10h00–10h40 · BLOCK 1: API Cơ Bản
 
 ### Mục tiêu
 - Gọi Chat Completions API, đo độ trễ
@@ -160,7 +160,7 @@ cost = (len(gpt4o_text.split()) / 0.75) / 1000 \
 `mini_response`, `gpt4o_latency`, `mini_latency`, `gpt4o_cost_estimate`).
 Tên key phải khớp từng ký tự — test so sánh chính xác.
 
-### ✅ CHECKPOINT 1 (10h00)
+### ✅ CHECKPOINT 1 (10h40)
 ```bash
 pytest tests/test_part1.py -v
 ```
@@ -183,7 +183,7 @@ phụ thuộc Task 1.3.
 
 ---
 
-# 🕘 10h00–11h00 · BLOCK 2: System Prompt & Token
+# 🕘 10h40–11h20 · BLOCK 2: System Prompt & Token
 
 ### Mục tiêu
 - Dùng message role `system` để định persona cho model
@@ -261,7 +261,7 @@ output_cost = output_tokens / 1000 * pricing["output"]
 **Bước 3.** Trả dict 5 key: `input_tokens`, `output_tokens`, `input_cost`,
 `output_cost`, `total_cost` (= input + output).
 
-### ✅ CHECKPOINT 2 (11h00)
+### ✅ CHECKPOINT 2 (11h20)
 ```bash
 pytest tests/test_part2.py -v
 ```
@@ -282,13 +282,13 @@ chưa có tiktoken) — vẫn pass phần lớn test — rồi hoàn thiện sau
 
 ---
 
-# ☕ 11h00–11h10 · GIẢI LAO
+# ☕ 11h20–11h30 · GIẢI LAO
 
 Đứng dậy, rời màn hình. Block 3 cần não tươi.
 
 ---
 
-# 🕘 11h10–12h00 · BLOCK 3: Streaming & Độ Bền
+# 🕘 11h30–12h10 · BLOCK 3: Streaming & Độ Bền
 
 ### Mục tiêu
 - Stream phản hồi token-by-token cho UX tức thời
@@ -363,7 +363,7 @@ for attempt in range(max_retries + 1):
 Lưu ý `raise` trần (không tham số) giữ nguyên exception gốc — người gọi biết
 chính xác lỗi gì.
 
-### ✅ CHECKPOINT 3 (12h00)
+### ✅ CHECKPOINT 3 (12h10)
 ```bash
 pytest tests/test_part3.py -v
 ```
@@ -380,7 +380,7 @@ vì mini-project dùng lại đúng kỹ thuật đó.
 
 ---
 
-# 🕘 12h00–12h50 · BLOCK 4: MINI-PROJECT — Trợ Lý CLI Hoàn Chỉnh
+# 🕘 12h10–12h50 · BLOCK 4: MINI-PROJECT — Trợ Lý CLI Hoàn Chỉnh
 
 ### Mục tiêu
 Ghép **tất cả** những gì đã xây thành một hàm `run_assistant`: persona qua
@@ -399,7 +399,7 @@ Ba điểm khác với `streaming_chatbot`:
    history bị cắt.
 3. **Trả về thống kê** thay vì None — sản phẩm thật cần đo được chi phí.
 
-### Các bước (35')
+### Các bước (25')
 
 **Bước 1.** Khởi tạo trạng thái phiên:
 ```python
